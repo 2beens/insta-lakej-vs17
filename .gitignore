@@ -1,0 +1,6 @@
+*.suo
+insta-lakej-vs17/node_modules/
+insta-lakej-vs17/obj/
+.js.map
+*.js.map
+insta-lakej-vs17/bin/Microsoft.NodejsTools.WebRole.dll

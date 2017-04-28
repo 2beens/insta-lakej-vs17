@@ -1,0 +1,15 @@
+﻿extends layout
+
+block content
+	h1= title
+	p Welcome to #{title}
+	a(href='https://api.instagram.com/oauth/authorize/?client_id=b4f6b81ffabf4794b200f67ee4e13eea&redirect_uri=http://localhost:8080/auth-return&response_type=code') Insta-Login
+
+	if message
+		h3 Auth message:
+		h4 #{message}
+
+	p CLIENT INFO
+	p CLIENT ID		b4f6b81ffabf4794b200f67ee4e13eea
+	p CLIENT SECRET	972dbe27e80747f28f3bf69ac37d9393 
+	p CLIENT STATUS	Sandbox Mode
