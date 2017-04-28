@@ -11,3 +11,19 @@ block content
 	if message
 		h3 Auth message:
 		h4 #{message}
+
+	if accTokenTaken
+		//input(
+		//	type='text'
+		//	name='userName'
+		//	id='userNameId'
+		//	value='2beens'
+		//)
+		//a(class='button' href='/api/inst') Go
+		
+		form.form-vertical(method='get', action='/api/inst/photos')
+			div.form-group
+				input.form-control(name='username', value=query, placeholder='Instagram username...', autofocus)
+
+			div.form-action
+				input.btn.btn-primary(type='submit', value='Search')

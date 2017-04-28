@@ -45,7 +45,10 @@
     </TypeScriptCompile>
     <TypeScriptCompile Include="routes\user.ts" />
     <TypeScriptCompile Include="Scripts\typings\node\node.d.ts" />
-    <TypeScriptCompile Include="services\instapiService.ts">
+    <TypeScriptCompile Include="services\instapiAuthService.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="services\instapiUserService.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="typings\globals\express\index.d.ts" />

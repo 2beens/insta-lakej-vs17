@@ -7,7 +7,7 @@ const router = express.Router();
 import config from "../config";
 
 import { GetAccessTokenResult } from "../models/getAccessTokenResult";
-import { InstagramApiService } from "../services/instapiService";
+import { InstagramApiAuthService } from "../services/instapiAuthService";
 
 router.get('/',
     (req: express.Request, res: express.Response) => {
@@ -34,7 +34,7 @@ router.get('/auth-return',
         }
 
         let authCode = req.query.code;
-        InstagramApiService.getAccessToken(authCode,
+        InstagramApiAuthService.getAccessToken(authCode,
             (getAccessTokenResult: GetAccessTokenResult) => {
                 if (getAccessTokenResult.result) {
                     res.cookie(config.accessTokenCookieName, getAccessTokenResult.accessToken, { expires: new Date(Date.now() + config.cookieExpiryTimeSpan), httpOnly: false });

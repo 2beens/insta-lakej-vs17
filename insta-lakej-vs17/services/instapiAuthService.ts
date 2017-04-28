@@ -4,7 +4,7 @@ import querystring = require('querystring');
 import { GetAccessTokenResult } from "../models/getAccessTokenResult";
 import config from "../config";
 
-export class InstagramApiService {
+export class InstagramApiAuthService {
 
     public static getAccessToken(authCode: string, callback: (res: GetAccessTokenResult) => void) {
         let form = {

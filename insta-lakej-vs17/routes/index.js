@@ -5,7 +5,7 @@
 var express = require("express");
 var router = express.Router();
 var config_1 = require("../config");
-var instapiService_1 = require("../services/instapiService");
+var instapiAuthService_1 = require("../services/instapiAuthService");
 router.get('/', function (req, res) {
     var message = "Access token set in cookies = ";
     var accTokenTaken = false;
@@ -28,7 +28,7 @@ router.get('/auth-return', function (req, res) {
         return;
     }
     var authCode = req.query.code;
-    instapiService_1.InstagramApiService.getAccessToken(authCode, function (getAccessTokenResult) {
+    instapiAuthService_1.InstagramApiAuthService.getAccessToken(authCode, function (getAccessTokenResult) {
         if (getAccessTokenResult.result) {
             res.cookie(config_1.default.accessTokenCookieName, getAccessTokenResult.accessToken, { expires: new Date(Date.now() + config_1.default.cookieExpiryTimeSpan), httpOnly: false });
         }
