@@ -32,7 +32,7 @@ var InstagramApiService = (function () {
                 }
             }
             else {
-                var resultMessage = 'Error while auth.';
+                var resultMessage = 'Error during auth.';
                 if (bodyJson.error_message !== null)
                     resultMessage += ' ' + bodyJson.error_message;
                 callback(new getAccessTokenResult_1.GetAccessTokenResult("", false, resultMessage));

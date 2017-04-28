@@ -4,10 +4,19 @@
  */
 var express = require("express");
 var router = express.Router();
+var config_1 = require("../config");
 var instapiService_1 = require("../services/instapiService");
 router.get('/', function (req, res) {
-    //req.cookies;
-    res.render('index', { title: 'Express', message: null });
+    var message = "Access token set in cookies = ";
+    var accTokenTaken = false;
+    var accTokenCookie = req.cookies[config_1.default.accessTokenCookieName];
+    if (accTokenCookie !== undefined) {
+        message += accTokenCookie;
+        accTokenTaken = true;
+    }
+    else
+        message += "false";
+    res.render('index', { title: 'Insta Lakej', message: message, accTokenTaken: accTokenTaken, accTokenCookie: accTokenCookie });
 });
 router.get('/auth-return', function (req, res) {
     if (req.query.error !== null && req.query.error !== undefined) {
@@ -20,11 +29,10 @@ router.get('/auth-return', function (req, res) {
     }
     var authCode = req.query.code;
     instapiService_1.InstagramApiService.getAccessToken(authCode, function (getAccessTokenResult) {
-        var resultMessage = getAccessTokenResult.message;
         if (getAccessTokenResult.result) {
-            resultMessage += ', AT = ' + getAccessTokenResult.accessToken;
+            res.cookie(config_1.default.accessTokenCookieName, getAccessTokenResult.accessToken, { expires: new Date(Date.now() + config_1.default.cookieExpiryTimeSpan), httpOnly: false });
         }
-        res.render('index', { title: 'Express - Returned', message: resultMessage });
+        res.redirect('/');
     });
 });
 Object.defineProperty(exports, "__esModule", { value: true });

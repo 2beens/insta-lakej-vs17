@@ -4,4 +4,7 @@
     public static grantType = 'authorization_code';
     public static redirectUri = 'http://localhost:8080/auth-return';
     public static instagramApiEndpoint = 'https://api.instagram.com/oauth/access_token';
+
+    public static accessTokenCookieName = 'instapiAccToken';
+    public static cookieExpiryTimeSpan = (1000 * 60) * 120;     //60 minutes * 120 = 2 hours
 }

@@ -4,13 +4,23 @@
 import express = require('express');
 const router = express.Router();
 
+import config from "../config";
+
 import { GetAccessTokenResult } from "../models/getAccessTokenResult";
 import { InstagramApiService } from "../services/instapiService";
 
 router.get('/',
     (req: express.Request, res: express.Response) => {
-        //req.cookies;
-        res.render('index', { title: 'Express', message: null });
+        let message = "Access token set in cookies = ";
+        let accTokenTaken = false;
+        let accTokenCookie = req.cookies[config.accessTokenCookieName];
+        if (accTokenCookie !== undefined) {
+            message += accTokenCookie;
+            accTokenTaken = true;
+        } else
+            message += "false";
+
+        res.render('index', { title: 'Insta Lakej', message: message, accTokenTaken: accTokenTaken, accTokenCookie: accTokenCookie });
     });
 
 router.get('/auth-return',
@@ -26,12 +36,11 @@ router.get('/auth-return',
         let authCode = req.query.code;
         InstagramApiService.getAccessToken(authCode,
             (getAccessTokenResult: GetAccessTokenResult) => {
-                let resultMessage = getAccessTokenResult.message;
                 if (getAccessTokenResult.result) {
-                    resultMessage += ', AT = ' + getAccessTokenResult.accessToken;
+                    res.cookie(config.accessTokenCookieName, getAccessTokenResult.accessToken, { expires: new Date(Date.now() + config.cookieExpiryTimeSpan), httpOnly: false });
                 }
 
-                res.render('index', { title: 'Express - Returned', message: resultMessage });
+                res.redirect('/');
             });
     });
 

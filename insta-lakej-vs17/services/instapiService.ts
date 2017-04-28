@@ -35,7 +35,7 @@ export class InstagramApiService {
                     callback(new GetAccessTokenResult(bodyJson.access_token, true, "success"));
                 }
             } else {
-                let resultMessage = 'Error while auth.';
+                let resultMessage = 'Error during auth.';
                 if (bodyJson.error_message !== null)
                     resultMessage += ' ' + bodyJson.error_message;
 
