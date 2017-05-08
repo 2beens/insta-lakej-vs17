@@ -6,5 +6,9 @@
     public static instagramApiEndpoint = 'https://api.instagram.com/oauth/access_token';
 
     public static accessTokenCookieName = 'instapiAccToken';
-    public static cookieExpiryTimeSpan = (1000 * 60) * 120;     //60 minutes * 120 = 2 hours
+    public static cookieExpiryTimeSpan = (1000 * 60) * 120;     //60 minutes * 120 = 2 hours    
+
+    public static getUserMediaApiEndpoint(userId: string, accessToken: string) {
+        return `https://api.instagram.com/v1/users/${userId}/media/recent/?access_token=${accessToken}`;
+    }
 }

@@ -12,7 +12,8 @@ var InstagramApiAuthService = (function () {
             client_secret: config_1.default.clientSecret,
             grant_type: config_1.default.grantType,
             redirect_uri: config_1.default.redirectUri,
-            code: authCode
+            code: authCode,
+            scope: 'basic+public_content'
         };
         var formData = querystring.stringify(form);
         var contentLength = formData.length;

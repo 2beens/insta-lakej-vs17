@@ -18,6 +18,10 @@ router.get('/', function (req, res) {
         message += "false";
     res.render('index', { title: 'Insta Lakej', message: message, accTokenTaken: accTokenTaken, accTokenCookie: accTokenCookie });
 });
+router.get('/logout', function (req, res) {
+    res.clearCookie(config_1.default.accessTokenCookieName);
+    res.redirect('/');
+});
 router.get('/auth-return', function (req, res) {
     if (req.query.error !== null && req.query.error !== undefined) {
         res.render('index', { title: 'Express - Returned', message: req.query.error_description });

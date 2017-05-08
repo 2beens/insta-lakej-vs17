@@ -5,6 +5,7 @@ block content
 	p Welcome to #{title}
 	if accTokenTaken
 		p Logged In (#{accTokenCookie})
+		a(href='/logout') Logout
 	else
 		a(href='https://api.instagram.com/oauth/authorize/?client_id=b4f6b81ffabf4794b200f67ee4e13eea&redirect_uri=http://localhost:8080/auth-return&response_type=code') Insta-Login
 

@@ -12,9 +12,10 @@ export class InstagramApiAuthService {
             client_secret: config.clientSecret,
             grant_type: config.grantType,
             redirect_uri: config.redirectUri,
-            code: authCode
+            code: authCode,
+            scope: 'basic+public_content'
         };
-
+        
         var formData = querystring.stringify(form);
         var contentLength = formData.length;
 

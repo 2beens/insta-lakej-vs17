@@ -23,6 +23,12 @@ router.get('/',
         res.render('index', { title: 'Insta Lakej', message: message, accTokenTaken: accTokenTaken, accTokenCookie: accTokenCookie });
     });
 
+router.get('/logout',
+    (req: express.Request, res: express.Response) => {
+        res.clearCookie(config.accessTokenCookieName);
+        res.redirect('/');
+    });
+
 router.get('/auth-return',
     (req: express.Request, res: express.Response) => {
         if (req.query.error !== null && req.query.error !== undefined) {
